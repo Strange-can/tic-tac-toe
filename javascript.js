@@ -33,6 +33,15 @@ const gameBoard = (function () {
 )()
 
 const game = ( function () {
+    function checkForDraw(array) {
+        if (array.includes('')) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+
     function checkStatus () {
         const boardArray = gameBoard.getBoardArray()
 
@@ -57,6 +66,9 @@ const game = ( function () {
             console.log('o wins')
         }
         
+        else if (checkForDraw(boardArray)) {
+            console.log('It\'s a tie!')
+        }
     }
 
     return { checkStatus }
