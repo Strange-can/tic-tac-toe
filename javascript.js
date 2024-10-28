@@ -33,15 +33,23 @@ const gameBoard = (function () {
                 if ( positions.includes(position) && count % 2 === 0 && boardArray[position] === '' ) {
                     count++
                     boardArray[position] = 'x'
+                    const play = document.createElement("p")
+                    play.textContent = 'x'
+                    square.appendChild(play)
                     console.log(boardArray)
                     console.log(count)
                 }
                 else if ( positions.includes(position) && count % 2 !== 0 && boardArray[position] === '' ) {
                     count++
                     boardArray[position] = 'o'
+                    const play = document.createElement("p")
+                    play.textContent = 'o'
+                    square.appendChild(play)
                     console.log(boardArray)
                     console.log(count)
                     }
+                square.classList.remove('square')
+                square.classList.add('disabledSquare')
                 game.checkStatus()
             })
         }}
