@@ -1,13 +1,9 @@
 const gameBoard = (function () {
+    let gameField = document.querySelector('.game-field')
     let boardArray = []
 
-    const setBoard = function () {
-    for (let i = 0; i < 9; i++ ) {
-        boardArray.push( '' )
-    }}
-    
     let count = 0
-    const inputAction = function (position) {
+    /*const inputAction = function (position) {
         let positions = '012345678'
         if ( positions.includes(position) && count % 2 === 0 && boardArray[position] === '' ) {
             count++
@@ -22,13 +18,39 @@ const gameBoard = (function () {
             console.log(count)
             }
         game.checkStatus()
-    }
+    }*/
+
+    const setBoard = function () {
+        for (let i = 0; i < 9; i++ ) {
+            boardArray.push( '' )
+            const square = document.createElement("div")
+            square.classList.add('square')
+            square.classList.add(`square${i}`)
+            gameField.appendChild(square)
+            square.addEventListener( "click", function inputAction() {
+                let positions = '012345678'
+                let position = Number(square.classList.toString().charAt(13))
+                if ( positions.includes(position) && count % 2 === 0 && boardArray[position] === '' ) {
+                    count++
+                    boardArray[position] = 'x'
+                    console.log(boardArray)
+                    console.log(count)
+                }
+                else if ( positions.includes(position) && count % 2 !== 0 && boardArray[position] === '' ) {
+                    count++
+                    boardArray[position] = 'o'
+                    console.log(boardArray)
+                    console.log(count)
+                    }
+                game.checkStatus()
+            })
+        }}
 
     const getBoardArray = function () {
         return boardArray
     }
 
-    return { setBoard, inputAction, getBoardArray }
+    return { setBoard, getBoardArray }
 }
 )()
 

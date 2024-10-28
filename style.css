@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+}
+
+.game-field {
+    aspect-ratio : 1 / 1;
+    width:40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: calc(100% /3);
+    height: calc(100% /3);
+    outline: 1px solid black;
+}
+
+.square:hover {
+    background-color: lightgrey;
+}
