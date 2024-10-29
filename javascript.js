@@ -3,22 +3,6 @@ const gameBoard = (function () {
     let boardArray = []
 
     let count = 0
-    /*const inputAction = function (position) {
-        let positions = '012345678'
-        if ( positions.includes(position) && count % 2 === 0 && boardArray[position] === '' ) {
-            count++
-            boardArray[position] = 'x'
-            console.log(boardArray)
-            console.log(count)
-        }
-        else if ( positions.includes(position) && count % 2 !== 0 && boardArray[position] === '' ) {
-            count++
-            boardArray[position] = 'o'
-            console.log(boardArray)
-            console.log(count)
-            }
-        game.checkStatus()
-    }*/
 
     const setBoard = function () {
         for (let i = 0; i < 9; i++ ) {
@@ -28,9 +12,8 @@ const gameBoard = (function () {
             square.classList.add(`square${i}`)
             gameField.appendChild(square)
             square.addEventListener( "click", function inputAction() {
-                let positions = '012345678'
                 let position = Number(square.classList.toString().charAt(13))
-                if ( positions.includes(position) && count % 2 === 0 && boardArray[position] === '' ) {
+                if ( count % 2 === 0 && boardArray[position] === '' && game.checkStatus() !== true ) {
                     count++
                     boardArray[position] = 'x'
                     const play = document.createElement("p")
@@ -39,7 +22,7 @@ const gameBoard = (function () {
                     console.log(boardArray)
                     console.log(count)
                 }
-                else if ( positions.includes(position) && count % 2 !== 0 && boardArray[position] === '' ) {
+                else if ( count % 2 !== 0 && boardArray[position] === '' && game.checkStatus() !== true ) {
                     count++
                     boardArray[position] = 'o'
                     const play = document.createElement("p")
@@ -84,6 +67,7 @@ const game = ( function () {
               || (boardArray[0] === 'x' && boardArray[4] === 'x' && boardArray[8] === 'x') 
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
             console.log("x wins")
+            return true
         }
         else if ( (boardArray[0] === 'o' && boardArray[1] === 'o' && boardArray[2] === 'o') 
               || (boardArray[3] === 'o' && boardArray[4] === 'o' && boardArray[5] === 'o') 
@@ -94,6 +78,7 @@ const game = ( function () {
               || (boardArray[0] === 'o' && boardArray[4] === 'o' && boardArray[8] === 'o') 
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
             console.log('o wins')
+            return true
         }
         
         else if (checkForDraw(boardArray)) {

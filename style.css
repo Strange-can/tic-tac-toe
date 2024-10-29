@@ -1,15 +1,23 @@
 body {
+    margin: 0;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    height: 90vh;
+    height: 70vh;
     margin: 0;
 }
 
 .game-field {
     aspect-ratio : 1 / 1;
-    width:40%;
+    width:35%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -49,4 +57,16 @@ body {
     font-size: 12vw;
     margin: 0;
     margin-bottom: 4vh;
+}
+
+.score-msg {
+    height: 10vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreboard {
+    height: 20vh;
 }
