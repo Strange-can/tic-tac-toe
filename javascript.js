@@ -13,6 +13,9 @@ const gameBoard = (function () {
             gameField.appendChild(square)
             square.addEventListener( "click", function inputAction() {
                 let position = Number(square.classList.toString().charAt(13))
+                if ( game.checkStatus() === true ) {
+                    return
+                }
                 if ( count % 2 === 0 && boardArray[position] === '' && game.checkStatus() !== true ) {
                     count++
                     boardArray[position] = 'x'
@@ -22,7 +25,7 @@ const gameBoard = (function () {
                     console.log(boardArray)
                     console.log(count)
                 }
-                else if ( count % 2 !== 0 && boardArray[position] === '' && game.checkStatus() !== true ) {
+                else if ( count % 2 !== 0 && boardArray[position] === '' && game.checkStatus() !== false ) {
                     count++
                     boardArray[position] = 'o'
                     const play = document.createElement("p")
@@ -35,7 +38,8 @@ const gameBoard = (function () {
                 square.classList.add('disabledSquare')
                 game.checkStatus()
             })
-        }}
+        }
+    }
 
     const getBoardArray = function () {
         return boardArray
