@@ -34,8 +34,6 @@ const gameBoard = (function () {
                     console.log(boardArray)
                     console.log(count)
                     }
-                square.classList.remove('square')
-                square.classList.add('disabledSquare')
                 game.checkStatus()
             })
         }
