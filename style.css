@@ -48,14 +48,32 @@ body {
     margin-bottom: 4vh;
 }
 
-.score-msg {
-    height: 10vh;
+.score-section {
+    height: 18vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.score-section > p {
+    margin: 1vh 0;
+}
+
 .scoreboard {
-    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+
+    width: 100vw;
+}
+
+.points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.points > p {
+    margin: 0.5vh 0;
 }
