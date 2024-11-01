@@ -59,6 +59,15 @@ const game = ( function () {
 
     function checkStatus () {
         const boardArray = gameBoard.getBoardArray()
+        
+        const player1Score = document.getElementById("player1-score")
+        let player1CurrentScore = 0
+
+        const tieScore = document.getElementById("tie-score")
+        let tieCurrentScore = 0
+
+        const player2Score = document.getElementById("player2-score")
+        let player2CurrentScore = 0
 
         if ( (boardArray[0] === 'x' && boardArray[1] === 'x' && boardArray[2] === 'x') 
               || (boardArray[3] === 'x' && boardArray[4] === 'x' && boardArray[5] === 'x') 
@@ -69,6 +78,8 @@ const game = ( function () {
               || (boardArray[0] === 'x' && boardArray[4] === 'x' && boardArray[8] === 'x') 
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
             console.log("x wins")
+            player1CurrentScore++
+            player1Score.textContent = player1CurrentScore
             return true
         }
         else if ( (boardArray[0] === 'o' && boardArray[1] === 'o' && boardArray[2] === 'o') 
@@ -80,11 +91,16 @@ const game = ( function () {
               || (boardArray[0] === 'o' && boardArray[4] === 'o' && boardArray[8] === 'o') 
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
             console.log('o wins')
+            player2CurrentScore++
+            player2Score.textContent = player2CurrentScore
             return true
         }
         
         else if (checkForDraw(boardArray)) {
             console.log('It\'s a tie!')
+            tieCurrentScore++
+            tieScore.textContent = tieCurrentScore
+            return true
         }
     }
 
