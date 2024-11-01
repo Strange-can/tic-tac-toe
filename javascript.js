@@ -113,4 +113,28 @@ const game = ( function () {
 }
 )()
 
+const customName = ( function () {
+    const player1Name = document.getElementById("player1-name")
+
+    const player2Name = document.getElementById("player2-name")
+
+    function changePlayer1 (name) {
+    player1Name.textContent = name
+    }
+
+    return { changePlayer1 }
+}
+)()
+
 gameBoard.setBoard()
+
+const mainSection = document.getElementsByClassName("main-section")
+const player1Section = document.getElementsByClassName("player1")
+const player1Name = document.getElementById("player1-name")
+
+const rename1 = document.getElementById("rename1")
+rename1.addEventListener("click", () => {
+    player1Name.remove()
+    /*const input = document.createElement("input")
+    player1Section.appendChild(input)*/
+})
