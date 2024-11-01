@@ -59,6 +59,8 @@ const game = ( function () {
 
     function checkStatus () {
         const boardArray = gameBoard.getBoardArray()
+
+        const scoreMessage = document.getElementById("score-msg")
         
         const player1Score = document.getElementById("player1-score")
         let player1CurrentScore = 0
@@ -78,6 +80,7 @@ const game = ( function () {
               || (boardArray[0] === 'x' && boardArray[4] === 'x' && boardArray[8] === 'x') 
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
             console.log("x wins")
+            scoreMessage.textContent = `player1 wins!`
             player1CurrentScore++
             player1Score.textContent = player1CurrentScore
             return true
@@ -91,6 +94,7 @@ const game = ( function () {
               || (boardArray[0] === 'o' && boardArray[4] === 'o' && boardArray[8] === 'o') 
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
             console.log('o wins')
+            scoreMessage.textContent = `player2 wins!`
             player2CurrentScore++
             player2Score.textContent = player2CurrentScore
             return true
@@ -98,6 +102,7 @@ const game = ( function () {
         
         else if (checkForDraw(boardArray)) {
             console.log('It\'s a tie!')
+            scoreMessage.textContent = `It's a tie!`
             tieCurrentScore++
             tieScore.textContent = tieCurrentScore
             return true
