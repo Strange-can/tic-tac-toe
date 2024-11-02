@@ -128,13 +128,34 @@ const customName = ( function () {
 
 gameBoard.setBoard()
 
-const mainSection = document.getElementsByClassName("main-section")
-const player1Section = document.getElementsByClassName("player1")
+const player1Section = document.getElementById("player1")
 const player1Name = document.getElementById("player1-name")
+
+const player2Section = document.getElementById("player2")
+const player2Name = document.getElementById("player2-name")
 
 const rename1 = document.getElementById("rename1")
 rename1.addEventListener("click", () => {
     player1Name.remove()
-    /*const input = document.createElement("input")
-    player1Section.appendChild(input)*/
+    const input1 = document.createElement("input")
+    input1.setAttribute("id", "input1")
+    player1Section.prepend(input1)
+
+    rename1.remove()
+    const confirm1 =  document.createElement("button")
+    confirm1.textContent = 'CONFIRM'
+    player1Section.append(confirm1)
+})
+
+const rename2 = document.getElementById("rename2")
+rename2.addEventListener("click", () => {
+    player2Name.remove()
+    const input2 = document.createElement("input")
+    input2.setAttribute("id", "input2")
+    player2Section.prepend(input2)
+
+    rename2.remove()
+    const confirm2 =  document.createElement("button")
+    confirm2.textContent = 'CONFIRM'
+    player2Section.append(confirm2)
 })
