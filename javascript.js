@@ -111,6 +111,7 @@ const game = ( function () {
     function enableGameOptions() {
         reset.addEventListener( "click", () => {
             gameBoard.setBoard()
+            scoreMessage.textContent = 'Who will reign victorious?'
             player1CurrentScore = 0
             player1Score.textContent = player1CurrentScore
             tieCurrentScore = 0
@@ -118,7 +119,10 @@ const game = ( function () {
             player2CurrentScore = 0
             player2Score.textContent = player2CurrentScore
         })
-        rematch.addEventListener("click", gameBoard.setBoard )
+        rematch.addEventListener("click", () => {
+            gameBoard.setBoard()
+            scoreMessage.textContent = 'Who will reign victorious?'
+        })
     }
 
     return { checkStatus, enableGameOptions }
