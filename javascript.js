@@ -16,7 +16,7 @@ const gameBoard = (function () {
                 if ( game.checkStatus() === true ) {
                     return
                 }
-                if ( count % 2 === 0 && boardArray[position] === '' && game.checkStatus() !== true ) {
+                if ( count % 2 === 0 && boardArray[position] === '' ) {
                     count++
                     boardArray[position] = 'x'
                     const play = document.createElement("p")
@@ -25,7 +25,7 @@ const gameBoard = (function () {
                     console.log(boardArray)
                     console.log(count)
                 }
-                else if ( count % 2 !== 0 && boardArray[position] === '' && game.checkStatus() !== false ) {
+                else if ( count % 2 !== 0 && boardArray[position] === '' ) {
                     count++
                     boardArray[position] = 'o'
                     const play = document.createElement("p")
@@ -80,7 +80,7 @@ const game = ( function () {
               || (boardArray[0] === 'x' && boardArray[4] === 'x' && boardArray[8] === 'x') 
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
             console.log("x wins")
-            scoreMessage.textContent = `player1 wins!`
+            scoreMessage.textContent = `${name1} wins!`
             player1CurrentScore++
             player1Score.textContent = player1CurrentScore
             return true
@@ -94,7 +94,7 @@ const game = ( function () {
               || (boardArray[0] === 'o' && boardArray[4] === 'o' && boardArray[8] === 'o') 
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
             console.log('o wins')
-            scoreMessage.textContent = `player2 wins!`
+            scoreMessage.textContent = `${name2} wins!`
             player2CurrentScore++
             player2Score.textContent = player2CurrentScore
             return true
@@ -129,10 +129,14 @@ const customName = ( function () {
 gameBoard.setBoard()
 
 const player1Section = document.getElementById("player1")
-const player1Name = document.getElementById("player1-name")
+let player1Name = document.getElementById("player1-name")
+let scoreName1 = document.getElementById("score-name1")
+let name1 = 'player1'
 
 const player2Section = document.getElementById("player2")
-const player2Name = document.getElementById("player2-name")
+let player2Name = document.getElementById("player2-name")
+let scoreName2 = document.getElementById("score-name2")
+let name2 = 'player2'
 
 const rename1 = document.getElementById("rename1")
 rename1.addEventListener("click", () => {
@@ -144,6 +148,17 @@ rename1.addEventListener("click", () => {
     rename1.remove()
     const confirm1 =  document.createElement("button")
     confirm1.textContent = 'CONFIRM'
+    confirm1.addEventListener("click", () => {
+        if (input1.value === '') {
+            return
+        }
+        else {
+        name1 = input1.value
+        scoreName1.textContent = `${name1}(x)`
+        game.checkStatus()
+        //player1Name = name1
+        }
+    })
     player1Section.append(confirm1)
 })
 
@@ -157,5 +172,15 @@ rename2.addEventListener("click", () => {
     rename2.remove()
     const confirm2 =  document.createElement("button")
     confirm2.textContent = 'CONFIRM'
+    confirm2.addEventListener("click", () => {
+        if (input2.value === '') {
+            return
+        }
+        else {
+        name2 = input2.value
+        scoreName2.textContent = `${name2}(o)`
+        game.checkStatus()
+        }
+    })
     player2Section.append(confirm2)
 })
