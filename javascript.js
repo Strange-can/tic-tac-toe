@@ -25,8 +25,6 @@ const gameBoard = (function () {
                     const play = document.createElement("p")
                     play.textContent = 'x'
                     square.appendChild(play)
-                    console.log(boardArray)
-                    console.log(count)
                 }
                 else if ( count % 2 !== 0 && boardArray[position] === '' ) {
                     count++
@@ -34,8 +32,6 @@ const gameBoard = (function () {
                     const play = document.createElement("p")
                     play.textContent = 'o'
                     square.appendChild(play)
-                    console.log(boardArray)
-                    console.log(count)
                     }
                 game.checkStatus()
             })
@@ -82,7 +78,6 @@ const game = ( function () {
               || (boardArray[2] === 'x' && boardArray[5] === 'x' && boardArray[8] === 'x') 
               || (boardArray[0] === 'x' && boardArray[4] === 'x' && boardArray[8] === 'x') 
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
-            console.log("x wins")
             name1 = customName.getName1()
             scoreMessage.textContent = `${name1} wins!`
             player1CurrentScore++
@@ -97,7 +92,6 @@ const game = ( function () {
               || (boardArray[2] === 'o' && boardArray[5] === 'o' && boardArray[8] === 'o') 
               || (boardArray[0] === 'o' && boardArray[4] === 'o' && boardArray[8] === 'o') 
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
-            console.log('o wins')
             name2 = customName.getName2()
             scoreMessage.textContent = `${name2} wins!`
             player2CurrentScore++
@@ -106,16 +100,24 @@ const game = ( function () {
         }
         
         else if (checkForDraw(boardArray)) {
-            console.log('It\'s a tie!')
             scoreMessage.textContent = `It's a tie!`
             tieCurrentScore++
             tieScore.textContent = tieCurrentScore
             return true
         }
     }
-
+    const reset = document.getElementById("reset")
     const rematch = document.getElementById("rematch")
     function enableGameOptions() {
+        reset.addEventListener( "click", () => {
+            gameBoard.setBoard()
+            player1CurrentScore = 0
+            player1Score.textContent = player1CurrentScore
+            tieCurrentScore = 0
+            tieScore.textContent = tieCurrentScore
+            player2CurrentScore = 0
+            player2Score.textContent = player2CurrentScore
+        })
         rematch.addEventListener("click", gameBoard.setBoard )
     }
 
