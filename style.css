@@ -98,3 +98,11 @@ input {
     margin: 16px 0;
     width: 10vw;
 }
+
+.game-options {
+    height: 12vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

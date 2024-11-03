@@ -60,20 +60,19 @@ const game = ( function () {
         }
     }
 
+    const player1Score = document.getElementById("player1-score")
+    let player1CurrentScore = 0
+
+    const tieScore = document.getElementById("tie-score")
+    let tieCurrentScore = 0
+
+    const player2Score = document.getElementById("player2-score")
+    let player2CurrentScore = 0
+
+    const scoreMessage = document.getElementById("score-msg")
+
     function checkStatus () {
         const boardArray = gameBoard.getBoardArray()
-
-        const scoreMessage = document.getElementById("score-msg")
-        
-        const player1Score = document.getElementById("player1-score")
-        let player1CurrentScore = 0
-        console.log(player1CurrentScore)
-
-        const tieScore = document.getElementById("tie-score")
-        let tieCurrentScore = 0
-
-        const player2Score = document.getElementById("player2-score")
-        let player2CurrentScore = 0
 
         if ( (boardArray[0] === 'x' && boardArray[1] === 'x' && boardArray[2] === 'x') 
               || (boardArray[3] === 'x' && boardArray[4] === 'x' && boardArray[5] === 'x') 
@@ -115,7 +114,12 @@ const game = ( function () {
         }
     }
 
-    return { checkStatus }
+    const rematch = document.getElementById("rematch")
+    function enableGameOptions() {
+        rematch.addEventListener("click", gameBoard.setBoard )
+    }
+
+    return { checkStatus, enableGameOptions }
 }
 )()
 
@@ -135,7 +139,6 @@ const customName = ( function () {
         rename1.addEventListener("click", () => {
             player1Name.remove()
             const input1 = document.createElement("input")
-            input1.setAttribute("id", "input1")
             player1Section.prepend(input1)
         
             rename1.remove()
@@ -209,70 +212,5 @@ const customName = ( function () {
 )()
 
 gameBoard.setBoard()
+game.enableGameOptions()
 customName.enableNameChange()
-
-/*const player1Section = document.getElementById("player1")
-let player1Name = document.getElementById("player1-name")
-let scoreName1 = document.getElementById("score-name1")
-let name1 = 'player1'
-
-const player2Section = document.getElementById("player2")
-let player2Name = document.getElementById("player2-name")
-let scoreName2 = document.getElementById("score-name2")
-let name2 = 'player2'
-
-const rename1 = document.getElementById("rename1")
-rename1.addEventListener("click", () => {
-    player1Name.remove()
-    const input1 = document.createElement("input")
-    input1.setAttribute("id", "input1")
-    player1Section.prepend(input1)
-
-    rename1.remove()
-    const confirm1 =  document.createElement("button")
-    confirm1.textContent = 'CONFIRM'
-    confirm1.addEventListener("click", () => {
-        if (input1.value === '') {
-            return
-        }
-        else {
-        name1 = input1.value
-        scoreName1.textContent = `${name1}(x)`
-        game.checkStatus()
-        player1Name.textContent = name1
-        input1.remove()
-        confirm1.remove()
-        player1Section.append(player1Name)
-        player1Section.append(rename1)
-        }
-    })
-    player1Section.append(confirm1)
-})
-
-const rename2 = document.getElementById("rename2")
-rename2.addEventListener("click", () => {
-    player2Name.remove()
-    const input2 = document.createElement("input")
-    input2.setAttribute("id", "input2")
-    player2Section.prepend(input2)
-
-    rename2.remove()
-    const confirm2 =  document.createElement("button")
-    confirm2.textContent = 'CONFIRM'
-    confirm2.addEventListener("click", () => {
-        if (input2.value === '') {
-            return
-        }
-        else {
-        name2 = input2.value
-        scoreName2.textContent = `${name2}(o)`
-        game.checkStatus()
-        player2Name.textContent = name2
-        input2.remove()
-        confirm2.remove()
-        player2Section.append(player2Name)
-        player2Section.append(rename2)
-        }
-    })
-    player2Section.append(confirm2)
-})*/
