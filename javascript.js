@@ -67,6 +67,8 @@ const game = ( function () {
 
     const scoreMessage = document.getElementById("score-msg")
 
+    let addPoint = true
+
     function checkStatus () {
         const boardArray = gameBoard.getBoardArray()
 
@@ -80,7 +82,12 @@ const game = ( function () {
               || (boardArray[2] === 'x' && boardArray[4] === 'x' && boardArray[6] === 'x') ) {
             name1 = customName.getName1()
             scoreMessage.textContent = `${name1} wins!`
-            player1CurrentScore++
+            console.log(addPoint)
+            if ( addPoint === true ) {
+                player1CurrentScore++
+            }
+            addPoint = false
+            console.log(addPoint)
             player1Score.textContent = player1CurrentScore
             return true
         }
@@ -94,16 +101,25 @@ const game = ( function () {
               || (boardArray[2] === 'o' && boardArray[4] === 'o' && boardArray[6] === 'o') ) {
             name2 = customName.getName2()
             scoreMessage.textContent = `${name2} wins!`
-            player2CurrentScore++
+            if ( addPoint === true ) {
+                player2CurrentScore++
+            }
+            addPoint = false
             player2Score.textContent = player2CurrentScore
             return true
         }
         
         else if (checkForDraw(boardArray)) {
             scoreMessage.textContent = `It's a tie!`
-            tieCurrentScore++
+            if ( addPoint === true ) {
+                tieCurrentScore++
+            }
+            addPoint = false
             tieScore.textContent = tieCurrentScore
             return true
+        }
+        else {
+            addPoint = true
         }
     }
     const reset = document.getElementById("reset")
